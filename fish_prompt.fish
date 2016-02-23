@@ -3,11 +3,19 @@ function fish_prompt
 
     echo
 
-    if [ $PWD = "/" ]
+    if test $PWD = "/"
       echo -n "/"
 
-    else if [ $PWD = "/Users/michaelosky" ]
+    else if test $PWD = "/Users/michaelosky"
       echo -n "~"
+
+    else if  test (basename (dirname $PWD)) = "/"
+      echo -n "/"
+      echo -n (basename $PWD)
+
+    else if test (basename (dirname $PWD)) = "michaelosky"
+      echo -n "~/"
+      echo -n (basename $PWD)
 
     else
       echo -n (basename (dirname $PWD))
